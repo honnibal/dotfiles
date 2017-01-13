@@ -1,1 +1,9 @@
-export PATH="/usr/local/bin:/usr/local/share/python:$PATH"
+export WORKON_HOME="/Users/matt/envs"
+export PYTHONPATH=/Library/Python/2.7/site-packages/
+source /usr/local/bin/virtualenvwrapper.sh
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+PERL_MB_OPT="--install_base \"/Users/matt/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/matt/perl5"; export PERL_MM_OPT;
