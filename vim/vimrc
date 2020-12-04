@@ -1,10 +1,25 @@
-" ========== Vim Basic Settings ============="
+" === Vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-filetype off
-execute pathogen#infect()
-filetype plugin indent on
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+
+call vundle#end()
+
+" === Pathogen (deprecated)
+"filetype off
+"execute pathogen#infect()
+"filetype plugin indent on
 " Pathogen settings.
 " call pathogen#runtime_append_all_bundles()
+
+" ========== Vim Basic Settings ============="
 
 " Make vim incompatbile to vi.
 set nocompatible
@@ -196,6 +211,7 @@ endif
 "autocmd bufwritepost .vimrc source ~/.vimrc
 
 " ========== END Gvim Settings ==========
+
 
 
 " ========== Plugin Settings =========="
