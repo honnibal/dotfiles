@@ -42,26 +42,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " Terminal in floating window
 Plug 'voldikss/vim-floaterm'
 
-" Support for Julia
-Plug 'JuliaEditorSupport/julia-vim'
-
-" Formatting Julia Files
-Plug 'kdheepak/JuliaFormatter.vim'
-
-" Automatic pane resizing
-Plug 'camspiers/lens.vim'
-
-" LSP completion for Neovim
-" Plug 'neovim/nvim-lsp'
-
-" Formatting of HTML, JS, CSS, JSON, and JSX Files
-Plug 'maksimr/vim-jsbeautify'
-
-" Adding support for LaTeX
-Plug 'lervag/vimtex'
-
-" Live Previewing of LaTeX Documents
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" Try buffer switcher
+Plug 'Yohannfra/Nvim-Switch-Buffer'
 
 " Moving through Vim easily
 Plug 'easymotion/vim-easymotion'
@@ -70,14 +52,14 @@ Plug 'easymotion/vim-easymotion'
 Plug 'fszymanski/deoplete-emoji'
 
 " Command line fuzzy finder
-Plug 'junegunn/fzf', { 'do': './install --bin' } "Checks latest fzf binary
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': './install --bin' } "Checks latest fzf binary
+"Plug 'junegunn/fzf.vim'
 
 " Easy commenting for Vim
 Plug 'preservim/nerdcommenter'
 
 " Fade inactive buffers and preserve syntax highlighting
-Plug 'TaDaa/vimade'
+" Plug 'TaDaa/vimade'
 
 " Support for Todo.txt files
 Plug 'freitass/todo.txt-vim'
@@ -85,30 +67,29 @@ Plug 'freitass/todo.txt-vim'
 " Gruvbox color theme for Vim 
 Plug 'morhetz/gruvbox'
 
-" Sends text to a target for execution
-"Plug 'jpalardy/vim-slime'
-
 " Ranger file browser integration
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
 " Surrounding words with characters in Vim
 Plug 'tpope/vim-surround'
 
-" BibTeX Handling
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax' "Also used for Markdown formatting
-
 " VIM Table Mode for instant table creation.
 Plug 'dhruvasagar/vim-table-mode'
 
+" FuzzyFinder (buffer explorer)
+Plug 'Daniel451/L9'
+" Plug 'vim-scripts/FuzzyFinder'
+
+Plug 'Glench/Vim-Jinja2-Syntax'
+
 " Deoplete Completion framework
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 
 " Tab naming powers
 Plug 'gcmt/taboo.vim'
@@ -132,13 +113,57 @@ Plug 'reedes/vim-pencil'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes' "Installs themes for airline
 
+" Python and syntax things
+"Plug 'neomake/neomake'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
 call plug#end()
 
 let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Basics 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"TAB settings.
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
                                 " PLUGIN SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""
+" NeoMake
+"""""""""""""""""""""
+
+"let g:neomake_python_enabled_makers = ['flake8']
+
+" Automatic runs
+" When writing a buffer (no delay).
+"call neomake#configure#automake('w')
+" When writing a buffer (no delay), and on normal mode changes (after 750ms).
+"call neomake#configure#automake('nw', 750)
+" When reading a buffer (after 1s), and when writing (no delay).
+"call neomake#configure#automake('rw', 1000)
+" Full config: when writing or reading a buffer, and on changes in insert and
+" normal mode (after 500ms; no delay when writing).
+"call neomake#configure#automake('nrwi', 500)
+
+"""""""""""""""""
+" Python stuff
+"""""""""""""""""
+
+"let g:ale_linters = {'python': ['flake8']}
+"let g:ale_fixers = {'python': ['black']}
+"let g:ale_fix_on_save = 1
 
 """""""""""""""""""""
 "JULIA FORMATTER
@@ -249,7 +274,6 @@ set background=dark " Setting dark mode
 """"""""""""""""""""""""""""""
 " TABULAR & VIM-MARKDOWN
 """"""""""""""""""""""""""""""
-
 let g:vim_markdown_folding_level = 1
 
 """"""""""""""""""""""""""""""
@@ -274,7 +298,7 @@ let g:pandoc#syntax#conceal#blacklist = ['strikeout', 'list', 'quotes']
 """"""""""""""""""""""""""""""
 
 " Turns on Deoplete at start-up of Vim
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 " Chooses backend for bibtex autocompletion
 "let g:pandoc#completion#bib#mode = 'citeproc'
@@ -283,14 +307,14 @@ let g:deoplete#enable_at_startup = 1
 "call deoplete#custom#option('auto_complete', v:false)
 
 " Enables omnicompletion of citation keys
-call deoplete#custom#var('omni', 'input_patterns', {
-    			\ 'pandoc': '@'
-    			\})
+"call deoplete#custom#var('omni', 'input_patterns', {
+"    			\ 'pandoc': '@'
+"    			\})
 
 " Enables deoplete for tex files
-call deoplete#custom#var('omni', 'input_patterns', {
-          \ 'tex': g:vimtex#re#deoplete
-          \})
+"call deoplete#custom#var('omni', 'input_patterns', {
+"          \ 'tex': g:vimtex#re#deoplete
+"          \})
 
 """"""""""""""""""""""""""""""
 " VIM-SLIME 
@@ -415,15 +439,22 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
                                  " KEY REMAPS 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maps leader to ,
+let mapleader = ","
+
+" map <leader>f :FufFileWithCurrentBufferDir **/<C-M>
+" map <leader>b :FufBuffer<C-M>
+" Feel free to map the shortcut you want
+nnoremap <leader>b :SwitchBuffer <cr>
+
+set switchbuf=usetab
+
 
 " Enables ripgrep for file completion via fzf
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 
-" Maps leader to the spacebar
-map <Space> <Leader>
-
-nnoremap   <silent>   <F9>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
-tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=
+nnoremap   <silent>   <F9>    :FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=Tmp<CR>
+tnoremap   <silent>   <F9>    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2 --title=Tmp<CR>
 nnoremap   <silent>   <F8>    :FloatermPrev<CR>
 tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermPrev<CR>
 nnoremap   <silent>   <F10>    :FloatermNext<CR>
@@ -435,6 +466,12 @@ tnoremap   <silent>   <F11>   <C-\><C-n><CR>
 nnoremap   <C-c><C-c> :FloatermSend<CR>
 vnoremap   <C-c><C-c> :FloatermSend<CR>
 
+" Buffer navigation for floating terminal
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <C-space> <C-\><C-n><C-w><C-w>
 " Maps easymotion jumps for lines
 map <leader><space>l <Plug>(easymotion-bd-jk)
 nmap <leader><space>l <Plug>(easymotion-overwin-line)
@@ -469,3 +506,15 @@ nnoremap <Leader><BS> :noh<cr>
 
 " Activates Twiddle case to switch between cases of selected text
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
+
+" Window movement with control hjkl
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+map <c-space> <c-w><c-w>
+
+" CoC language server
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
