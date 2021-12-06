@@ -8,7 +8,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
-"Plugin 'https://github.com/LoricAndre/fzterm.nvim'
+Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'tpop/vim-fugitive'
 Plugin 'voldikss/vim-floaterm'
 Plugin 'camspiers/lens.vim'
@@ -257,8 +257,8 @@ imap <leader>l <ESC>:TagbarToggle<cr>i
 
 " FuzzyFinder
 
-map <leader>f :Files<C-M> 
-map <leader>b :Buffers<C-M>
+map <leader>f :FufFileWithCurrentBufferDir **/<C-M>
+map <leader>b :FufBuffer<C-M>
 
 nmap <leader>a <Esc>:Ack!
 
