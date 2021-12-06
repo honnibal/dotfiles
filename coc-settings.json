@@ -1,0 +1,15 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["python", "yaml", "json"],
+  "pyright.enable": true,
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
+  "coc.source.around.enable": false,
+  "coc.source.buffer.enable": false,
+  "coc.source.file.enable": false,
+  "coc.source.floaterm.enable": false,
+  "coc.source.pyright.enable": true,
+  "pyright.completion.snippetSupport": false,
+  "suggest.autoTrigger": "trigger",
+  "diagnostic.enable": true,
+  "suggest.timeout": 1
+}

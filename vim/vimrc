@@ -8,16 +8,22 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
-Plugin 'FuzzyFinder'
+"Plugin 'https://github.com/LoricAndre/fzterm.nvim'
+Plugin 'tpop/vim-fugitive'
+Plugin 'voldikss/vim-floaterm'
+Plugin 'camspiers/lens.vim'
+Plugin 'fszymanski/deoplete-emoji'
+Plugin 'TaDaa/vimade'
+Plugin 'kevinhwang91/rnvimr', {'do': 'make sync'}
+"Plugin 'tpope/vim-surround'
+Plugin 'gcmt/taboo.vim'
+Plugin 'mg979/vim-visual-multi'
+Plugin 'tpope/vim-obsession'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes' "Installs themes for airline
+
 
 call vundle#end()
-
-" === Pathogen (deprecated)
-"filetype off
-"execute pathogen#infect()
-"filetype plugin indent on
-" Pathogen settings.
-" call pathogen#runtime_append_all_bundles()
 
 " ========== Vim Basic Settings ============="
 
@@ -190,6 +196,21 @@ nnoremap g; g;zz
 
 nnoremap <leader>m :!cd %:p:h && fab make
 
+" === Shortcuts from TheCedarPrince
+
+nnoremap   <leader>t   :FloatermNew<CR>
+tnoremap   <leader>t    <C-\><C-n>:FloatermNew --height=0.4 --width=0.98 --wintype=floating --position=bottom --autoclose=2
+nnoremap   <leader>T    :FloatermPrev<CR>
+tnoremap   <leader>T    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <leader>y    :FloatermNext<CR>
+tnoremap   <leader>Y    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <leader>u   :FloatermToggle<CR>
+tnoremap   <leader>u   <C-\><C-n>:FloatermToggle<CR>
+tnoremap   <leader>U   <C-\><C-n><CR>
+
+nnoremap   <C-c><C-c> :FloatermSend<CR>
+vnoremap   <C-c><C-c> :FloatermSend<CR>
+
 " =========== END my Vim stuff ===========
 
 
@@ -236,13 +257,39 @@ imap <leader>l <ESC>:TagbarToggle<cr>i
 
 " FuzzyFinder
 
-map <leader>f :FufFileWithCurrentBufferDir **/<C-M> 
-map <leader>b :FufBuffer<C-M>
+map <leader>f :Files<C-M> 
+map <leader>b :Buffers<C-M>
 
 nmap <leader>a <Esc>:Ack!
 
 syntax enable
 set background=dark
+
+""""""""""""""""""""""""""""""
+" RNVIMR
+""""""""""""""""""""""""""""""
+
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_enable_picker = 1
+
+" Customize the initial layout
+let g:rnvimr_layout = {
+            \ 'relative': 'editor',
+            \ 'width': float2nr(round(1.0 * &columns)),
+            \ 'height': float2nr(round(0.42 * &lines)),
+            \ 'col': float2nr(round(0.0 * &columns)),
+            \ 'row': float2nr(round(0.54 * &lines)),
+            \ 'style': 'minimal'
+            \ }
+
+""""""""""""""""""""""""""""""
+" VIM-FLOATERM
+""""""""""""""""""""""""""""""
+
+let g:floaterm_open_command = 'tabe'
 
 " =========== END Plugin Settings =========="
 "
