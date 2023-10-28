@@ -23,6 +23,9 @@ set sessionoptions+=tabpages,globals
 
 set encoding=utf-8
 
+set foldmethod=syntax
+set foldlevelstart=99
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
                                     " PLUGINS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -119,10 +122,12 @@ Plug 'vim-airline/vim-airline-themes' "Installs themes for airline
 "Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Terraform syntax
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
-let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
+let g:python3_host_prog = expand('~/.config/nvim/env3.10/bin/python')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basics 
@@ -516,5 +521,5 @@ map <c-h> <c-w>h
 map <c-space> <c-w><c-w>
 
 " CoC language server
-" Use <c-space> to trigger completion.
+" Use ctrl+space, to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
