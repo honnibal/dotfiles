@@ -11,5 +11,6 @@
   "pyright.completion.snippetSupport": false,
   "suggest.autoTrigger": "trigger",
   "diagnostic.enable": true,
-  "suggest.timeout": 1
+  "suggest.timeout": 1,
+  "python.linting.flake8Args": ["max-line-length=88"]
 }
