@@ -7,10 +7,22 @@
   "coc.source.buffer.enable": false,
   "coc.source.file.enable": false,
   "coc.source.floaterm.enable": false,
-  "coc.source.pyright.enable": true,
-  "pyright.completion.snippetSupport": false,
-  "suggest.autoTrigger": "trigger",
+  "coc.source.pyright.enable": false,
+  "pyright.completion.snippetSupport": true,
+  "suggest.autoTrigger": "none",
   "diagnostic.enable": true,
-  "suggest.timeout": 1,
-  "python.linting.flake8Args": ["max-line-length=88"]
+  "suggest.timeout": 5000,
+  "python.linting.flake8Args": ["--max-line-length=88"],
+  "languageserver": {
+	"terraform": {
+	  "command": "terraform-ls",
+	  "args": ["serve"],
+	  "filetypes": [
+		"terraform",
+		"tf"
+	  ],
+	  "initializationOptions": {},
+	  "settings": {}
+	}
+  }
 }
