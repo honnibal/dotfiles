@@ -23,6 +23,8 @@ set sessionoptions+=tabpages,globals
 
 set encoding=utf-8
 
+set clipboard=unnamedplus
+
 set foldmethod=syntax
 set foldlevelstart=99
 
