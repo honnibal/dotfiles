@@ -109,12 +109,7 @@ source $ZSH/oh-my-zsh.sh
 #alias zv='rg  . | fzf | awk -F: '\''{print $1}'\'' | xargs -l vim'
 #alias zp='rg . | fzf'
 
-# Activates tmux session by default
-#tmux attach &> /dev/null
-
-#if [[ ! $TERM =~ screen ]]; then
-#    exec tmux
-#fi
+# Start tmux manually: `tmux` for new session, `tmux attach` to reconnect
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/software/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/software/google-cloud-sdk/path.zsh.inc"; fi
@@ -142,3 +137,8 @@ function atuin-smart-up {
 zle -N atuin-smart-up
 
 bindkey "^[[A" atuin-smart-up
+export PATH="$HOME/.local/bin:$PATH"
+
+# Claude Code
+export ENABLE_LSP_TOOL=1
+
