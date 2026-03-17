@@ -74,6 +74,11 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Fix TERM for SSH: remote hosts likely lack the local terminfo entry
+if [[ -n $SSH_CONNECTION ]]; then
+  export TERM=xterm-256color
+fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -137,6 +142,12 @@ function atuin-smart-up {
 zle -N atuin-smart-up
 
 bindkey "^[[A" atuin-smart-up
+
+# Fix arrow keys in tmux (application mode sends ^[O* instead of ^[[*)
+bindkey "^[OD" backward-char
+bindkey "^[OC" forward-char
+bindkey "^[OA" up-line-or-history
+bindkey "^[OB" down-line-or-history
 export PATH="$HOME/.local/bin:$PATH"
 
 # Claude Code
